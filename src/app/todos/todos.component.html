@@ -9,7 +9,6 @@
     </div>
     <div class="todo-body" *ngIf="todos.length;else noTodos">
         <div class="todos" *ngFor="let todo of todos">
-
             <input type="checkbox" name="" id="" [checked]="todo.complete" (change)="completeTodo(todo.id)">
             <button class="btn delete" [ngClass]="{checkTodoOpacity:!todo.complete}" (click)="deleteTodo(todo.id)"
                 [disabled]="!todo.complete"></button>
