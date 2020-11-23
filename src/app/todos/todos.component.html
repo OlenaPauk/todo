@@ -1,0 +1,23 @@
+<div class="todo-container">
+    <div class="todo-header">
+        <h2 class="header-title">Todo List</h2>
+        <span class="header-date">{{date| async | date: 'mediumTime'}}</span>
+    </div>
+    <div class="todo-input">
+        <input type="text" placeholder="New todo..." [(ngModel)]='newTodo' (keydown.enter)="addTodo()">
+        <button class="btn newTodo" (click)="addTodo()">Add</button>
+    </div>
+    <div class="todo-body" *ngIf="todos.length;else noTodos">
+        <div class="todos" *ngFor="let todo of todos">
+
+            <input type="checkbox" name="" id="" [checked]="todo.complete" (change)="completeTodo(todo.id)">
+            <button class="btn delete" [ngClass]="{checkTodoOpacity:!todo.complete}" (click)="deleteTodo(todo.id)"
+                [disabled]="!todo.complete"></button>
+            <div class="todo"><span [ngClass]="{checkTodo: todo.complete}">{{todo.todo}}</span></div>
+            <div class="todoDate"><span>{{todo.date | date:'medium'}}</span></div>
+        </div>
+    </div>
+    <ng-template #noTodos>
+        <p class="noTodo">No Todos!</p>
+    </ng-template>
+</div>
